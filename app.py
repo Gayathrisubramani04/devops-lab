@@ -1,4 +1,5 @@
-﻿from http.server import BaseHTTPRequestHandler, HTTPServer
+﻿
+from http.server import BaseHTTPRequestHandler, HTTPServer
 import logging
 
 logging.basicConfig(
@@ -6,12 +7,13 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s %(message)s"
 )
 
+
 class AppHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         logging.info("Request received: %s", self.path)
 
         if self.path == "/":
-           body = b"DevOps Lab Application is running successfully!\n"
+            body = b"DevOps Lab Application is running successfully!\n"
             status = 200
             content_type = "text/plain"
 
@@ -47,6 +49,7 @@ class AppHandler(BaseHTTPRequestHandler):
 
     def log_message(self, format, *args):
         pass
+
 
 if __name__ == "__main__":
     server = HTTPServer(("0.0.0.0", 8000), AppHandler)
