@@ -11,7 +11,7 @@ class AppHandler(BaseHTTPRequestHandler):
         logging.info("Request received: %s", self.path)
 
         if self.path == "/":
-            body = b"DevOps Lab Application is running!\n"
+           body = b"DevOps Lab Application is running successfully!\n"
             status = 200
             content_type = "text/plain"
 
