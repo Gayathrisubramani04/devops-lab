@@ -1,0 +1,35 @@
+
+name: DevOps Lab CI Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build and Test Python Application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Verify Python version
+        run: python --version
+
+      - name: Compile Python files
+        run: python -m py_compile app.py test_app.py
+
+      - name: Run automated tests
+        run: python -m unittest -v
